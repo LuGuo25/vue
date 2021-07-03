@@ -1,0 +1,12 @@
+npm config set registry https://registry.npm.taobao.org //切换到国内镜像，目的是加快访问速度
+npm init -y
+package.json:
+npm install vue@2.6.x vue-router@3.1.x //安装vue和vue.router
+npm install webpack@4.39.x webpack-cli@3.3.x webpack-dev-server@3.8.x html-webpack-plugin@3.2.x -D//安装webpack四个包
+//去 package.json里面Debug下"scripts"{}里加   "dev":"webpack-dev-server --inline --hot --port 8088"
+npm run dev
+//之后会报错
+y终止处理操作
+npm install vue-loader@15.7.x vue-template-compiler@2.6.x -D
+
+
