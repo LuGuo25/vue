@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getters</title>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{this.$store.getters}}</p>
+    </div>
+    <script>
+        const store=new Vuex.Store({
+            state:{
+                todos:[
+                    {
+                        id:1,
+                        text:'我已完成',
+                        done:true
+                    },
+                    {
+                        id:1,
+                        text:'我没有完成',
+                        done:false
+                    }
+                ]
+            },
+            getters:{
+                doneTodos:state=>{
+                    return state.todos.filter(todo=>todo.done)
+                }
+            }
+        })
+        var vm=new Vue({
+            el:"#app",
+            store
+        })
+    </script>
+</body>
+</html>

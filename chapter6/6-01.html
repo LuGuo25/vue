@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-01</title>
+    <script src="./vue.js"></script>
+    <script src="./vuex.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{name}} {{age}}</p>
+    </div>
+
+    <script>
+        var store = new Vuex.Store({
+            state: {
+                name: "luguo",
+                age: "19岁"
+            }
+        })
+        var mapState = Vuex.mapState
+        var vm = new Vue ({
+            el:"#app",
+            store,
+            computed:
+                mapState({
+                    name: state => state.name,
+                    age: state => state.age
+                })
+        })
+    </script>
+</body>
+</html>

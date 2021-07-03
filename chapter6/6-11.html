@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>plugins</title>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+    <script>
+        const myPlugin=store=>{
+            //当store初始化调用
+            store.subscribe((mutation,state)=>{
+                //每次mutation提交后调用,mutation格式为{type,payload}
+                console.log(mutation.type,mutation.payload)
+            })
+        }
+        const store=new Vuex.Store({
+            mutations:{
+                do(state){
+                    console.log(state)
+                }
+            },
+            plugins:[myPlugin]
+        })
+        store.commit('do','plugin')
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mutations</title>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="param">传递参数</button>
+        <p>{{this.$store.state.param}}</p>
+    </div>
+    <script>
+        var store=new Vuex.Store({
+            state:{
+                param:""
+            },
+            mutations:{
+                receive(state,param){
+                    state.param=param
+                }
+            },
+            actions:{
+                param(context){
+                    context.commit('receive','我是传递的参数')
+                }
+            }
+        })
+        var vm=new Vue({
+            el:"#app",
+            store,
+            methods:{
+                param(){
+                    this.$store.dispatch('param')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

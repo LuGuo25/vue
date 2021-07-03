@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>actions</title>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="mut">查看mutations接收的参数</button>
+        <button @click="act">查看actions接收的参数</button>
+    </div>
+    <script>
+        var store = new Vuex.Store({
+            state:{
+                name:'张三',
+                age:'38',
+                gender:'男'
+            },
+            mutations:{
+                test(state){
+                    console.log(state)
+                }
+            },
+            actions:{
+                test(context){
+                    console.log(context)
+                }
+            }
+        })
+        var vm=new Vue({
+            el:"#app",
+            store,
+            methods:{
+                mut(){
+                    this.$store.commit('test')
+                },
+                act(){
+                    this.$store.dispatch('test')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

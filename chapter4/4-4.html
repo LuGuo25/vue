@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-4</title>
+    <script src="vue.js"></script>
+
+    <style>
+        div.circular {
+            width: 100px; height: 100px; background: red;
+            border-radius: 50%; margin-top: 20px; text-align: center;
+            line-height: 100px; color: #fff;
+        }
+        .bounce-enter-active {
+            animation: Ami 15s;
+        }
+        .bounce-leave-active {
+            animation: Ami 15s;
+        }
+        @keyframes Ami {
+            0% {transform: scale(0); background: red;}
+            20% {transform: scale(1); background: burlywood;}
+            50% {transform: scale(1.5); background: blueviolet;}
+            100% {transform: scale(1); background: burlywood;}
+        }
+    </style>
+</head>
+<body>
+    <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @enter-cancelled="enterCancelled"
+        @before-leave="beforeLeave"
+        @leave="leave"
+        @after-leave="afterLeave"
+        @leave-cancelled="leaveCancelled"
+        v-bind:css="false">
+    </transition>
+    <div id="app">
+        <button @click="show=!show">使用@keyframes创建CSS动画</button>
+        <transition name="bounce">
+            <div class="circular" v-if="show">Circle</div>
+        </transition>
+    </div>
+
+    <script>
+        var vm = new Vue ({
+            el:"#app",
+            data: { show: true },
+            methods: {
+                // beforeEnter 入场钩子函数
+                // 动画入场之前，此时动画尚未开始，设置元素开始动画之前的起始样式
+                beforeEnter (el) {},
+                // enter用于设置动画开始之后的样式
+                enter (el,done) {
+                    // ...
+                    done()
+                },
+                // 在入场动画完成之后会调用
+                afterEnter (el) {},
+                enterCancelled (el) {},
+                // 出场钩子函数
+                beforeLeave (el) {},
+                leave (el,done) {
+                    // ...
+                    done()
+                },
+                afterLeave (el) {},
+                leaveCancelled (el) {},
+            }
+        })
+    </script>
+</body>
+</html>
